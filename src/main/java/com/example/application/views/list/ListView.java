@@ -12,18 +12,23 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.annotation.security.PermitAll;
+import org.springframework.context.annotation.Scope;
+
 
 
 @PermitAll
 @Route(value="", layout = MainLayout.class)
+@Scope("prototype")
 @PageTitle("Contacts | Vaadin CRM")
+@org.springframework.stereotype.Component
+@AnonymousAllowed
 public class ListView extends VerticalLayout {
 
     Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
     ContactForm form;
-
     private  final CrmService service;
 
     public ListView(CrmService service) {
@@ -39,6 +44,7 @@ public class ListView extends VerticalLayout {
 
 
         );
+
 
         updateList();
         closeEditor();

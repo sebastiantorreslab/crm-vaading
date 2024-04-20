@@ -21,6 +21,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         offlinePath="offline.html",
         offlineResources = { "images/offline.png" }
 )
+
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
