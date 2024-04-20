@@ -12,10 +12,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import jakarta.annotation.security.PermitAll;
 
 
-
-
+@PermitAll
 @Route(value="", layout = MainLayout.class)
 @PageTitle("Contacts | Vaadin CRM")
 public class ListView extends VerticalLayout {
@@ -24,9 +24,10 @@ public class ListView extends VerticalLayout {
     TextField filterText = new TextField();
     ContactForm form;
 
-    private  CrmService service;
+    private  final CrmService service;
 
     public ListView(CrmService service) {
+        this.service = service;
         addClassName("list-view");
         setSizeFull();
         configureGrid();
